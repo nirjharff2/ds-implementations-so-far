@@ -1,0 +1,46 @@
+print(12 & 25) # 1100 & 11001 => 1000 -> 8
+print(12 | 25) # 1100 | 11001 => 11101 -> 29
+print(12 ^ 25) # 1100 ^ 11001 => 10101 -> 21
+print(~12) #
+print(3 << 2) #011 << 00 -> 01100
+print(12 >> 2) #1100 >> 00 -> 11
+
+def check_kth_bit(x, k):
+    return (x >> k) & 1 #1011 >> 00 -> 10 & 1 -> 0
+    
+def print_on_bits_and_count_them(x):
+    count = 0
+    for k in range (0,32):
+        if check_kth_bit(x, k):
+            count+=1
+            print(k, end = " ")
+    print("\nTotal ON  bits:",count)
+
+def isEven(x):
+    if x & 1:
+        return "Odd"
+    else:
+        return "Even"
+
+def set_kth_bit(x,k):
+    return x | (1 << k) #1011 | (1 << 2) -> 1011 | 100 -> 1111 -> 15
+def unset_kth_bit(x,k):
+    return x & ~(1 << k) #1011 & ~(1 << 3) -> 1011 & ~1000 -> 1011 & 0111 -> 0011 -> 3
+def toggle_kth_bit(x,k):
+    return x ^ (1 << k) #1011 ^ 100 -> 1111 -> 15
+    
+def check_power_of_2(x):
+    count = 0
+    for k in range (0,32):
+        if check_kth_bit(x, k):
+            count+=1
+    return count==1
+
+x = 11 #1011
+print(check_kth_bit(x,2))
+print_on_bits_and_count_them(x)
+print(isEven(x))
+print(set_kth_bit(x,2))
+print(unset_kth_bit(x,3))
+print(toggle_kth_bit(x,2))
+print(check_power_of_2(8))
